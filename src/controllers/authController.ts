@@ -87,7 +87,7 @@ export const logout = async (req: Request, res: Response): Promise<void> => {
 
     await blacklistToken(token, ttl);
 
-    res.status(200).json({ message: SUCCESS_MESSAGES.LOGOUT_SUCCESSFUL });
+    res.status(204).json({ message: SUCCESS_MESSAGES.LOGOUT_SUCCESSFUL });
   } catch (error) {
     res.status(500).json({ error: ERROR_MESSAGES.INTERNAL_SERVER_ERROR });
   }
