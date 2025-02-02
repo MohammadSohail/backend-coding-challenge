@@ -1,6 +1,7 @@
-import { Request, Response, NextFunction } from "express";
+import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { ERROR_MESSAGES } from "../constants/messages";
+import { isTokenBlacklisted } from "../services/redisService";
 
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET!;
 export const authenticate = async (
@@ -15,6 +16,12 @@ export const authenticate = async (
   }
 
   try {
+    const blacklisted = await isTokenBlacklisted(token);
+    if (blacklisted) {
+      res.status(401).json({ error: ERROR_MESSAGES.UNAUTHORIZED });
+      return;
+    }
+
     const decoded = jwt.verify(token, ACCESS_TOKEN_SECRET) as {
       id: string;
     };
