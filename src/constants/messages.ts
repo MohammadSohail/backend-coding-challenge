@@ -1,6 +1,7 @@
 export const SUCCESS_MESSAGES = {
   USER_CREATED: "Signup successful",
   LOGIN_SUCCESSFUL: "Login successful",
+  LOGOUT_SUCCESSFUL: "Logout successful",
   LEAD_CREATED: "Lead created successfully",
   LEAD_UPDATED: "Lead updated successfully",
   LEAD_DELETED: "Lead deleted successfully",
@@ -22,4 +23,8 @@ export const ERROR_MESSAGES = {
     "Password must contain at least one number",
   INVALID_CREDENTIALS: "Invalid credentials",
   LEAD_NOT_FOUND: "Lead not found",
+  MISSING_TOKEN: "Token is missing",
+  INVALID_TOKEN: "Invalid token",
+  INVALID_TOKEN_PAYLOAD: "Invalid token payload",
+  TOKEN_ALREADY_EXPIRED: "Token already expired",
 };

@@ -39,6 +39,19 @@ services:
       timeout: 10s
       retries: 5 
 
+  redis-master:
+    container_name: redis-master
+    image: redis
+    volumes:
+      - my-datavolume:/data/redis
+    ports:
+      - 6379:6379
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   tests:
       image: node:18-alpine
       container_name: tests
@@ -64,4 +77,5 @@ services:
 
 
 volumes:
-  mongo-data: 
+  mongo-data:
+  my-datavolume:
